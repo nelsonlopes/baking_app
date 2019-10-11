@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Baking App</string>
+
+    <!-- Passing the Recipe in the Intent -->
+    <string name="parcel_recipe">PARCEL_RECIPE</string>
+
+    <!-- Error messages -->
+    <!-- Error getting results -->
+    <string name="error_message_results">Failed to get results. Tap here to try again.</string>
+    <!-- Error internet connections -->
+    <string name="error_message_network">Check your internet connection. Tap here to try again.</string>
 </resources>
