@@ -16,8 +16,6 @@ import com.nelsonlopes.bakingapp.model.Recipe;
 import com.nelsonlopes.bakingapp.ui.adapters.IngredientsAdapter;
 import com.nelsonlopes.bakingapp.ui.adapters.StepsAdapter;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -59,6 +57,8 @@ public class RecipeActivity extends AppCompatActivity {
 
         recipe = intent.getParcelableExtra(getString(R.string.parcel_recipe));
 
+        setTitle(recipe.getName());
+
         // Ingredients
         // Use this setting to improve performance as we know that changes in content do not change
         // the layout size of the RecyclerView
@@ -67,10 +67,6 @@ public class RecipeActivity extends AppCompatActivity {
         // Use a grid layout manager
         layoutManagerIngredients = new LinearLayoutManager(this);
         ingredientsRv.setLayoutManager(layoutManagerIngredients);
-
-        // RecyclerView item divider
-        ingredientsRv.addItemDecoration(new DividerItemDecoration(getApplicationContext(),
-                DividerItemDecoration.VERTICAL));
 
         // Specify an adapter
         mAdapterIngredients = new IngredientsAdapter(this, recipe.getIngredients());

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nelsonlopes.bakingapp.R;
@@ -52,11 +53,14 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.MyViewHo
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         // - get element from the dataset at this position
         // - replace the contents of the view with that
+        CardView recipeCv = holder.view.findViewById(R.id.cv_recipe);
         TextView recipeTv = holder.view.findViewById(R.id.tv_recipe);
+        TextView servingsTv = holder.view.findViewById(R.id.tv_servings);
 
         recipeTv.setText(recipes.get(position).getName());
+        servingsTv.setText(String.valueOf(recipes.get(position).getServings()) + " servings");
 
-        recipeTv.setOnClickListener(new View.OnClickListener() {
+        recipeCv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Recipe recipe = getItem(holder.getAdapterPosition());

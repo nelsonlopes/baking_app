@@ -52,7 +52,9 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         // - replace the contents of the view with that
         TextView ingredientTv = holder.view.findViewById(R.id.tv_ingredient);
 
-        ingredientTv.setText(ingredients.get(position).getIngredient());
+        ingredientTv.setText(ingredients.get(position).getQuantity() + " " +
+                ingredients.get(position).getMeasure() + " " +
+                ingredients.get(position).getIngredient());
     }
 
     // Return the size of the dataset (invoked by the layout manager)

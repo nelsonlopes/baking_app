@@ -1,7 +1,6 @@
 package com.nelsonlopes.bakingapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,7 +9,6 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.data.network.NetworkUtils;
@@ -66,10 +64,6 @@ public class MainActivity extends AppCompatActivity {
         // Use a grid layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        // RecyclerView item divider
-        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(),
-                DividerItemDecoration.VERTICAL));
 
         // Specify an adapter
         mAdapter = new RecipesAdapter(this, recipes);
