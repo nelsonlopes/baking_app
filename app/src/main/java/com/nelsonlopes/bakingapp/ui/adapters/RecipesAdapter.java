@@ -1,6 +1,7 @@
-package com.nelsonlopes.bakingapp.ui;
+package com.nelsonlopes.bakingapp.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.model.Recipe;
+import com.nelsonlopes.bakingapp.ui.RecipeActivity;
 
 import java.util.List;
 
@@ -37,7 +39,8 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.MyViewHo
     @Override
     public RecipesAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recipe_item, parent, false);
 
         RecipesAdapter.MyViewHolder vh = new RecipesAdapter.MyViewHolder(v);
 
@@ -53,17 +56,17 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.MyViewHo
 
         recipeTv.setText(recipes.get(position).getName());
 
-        /*holder.textView.setOnClickListener(new View.OnClickListener() {
+        recipeTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Recipe recipe = getItem(holder.getAdapterPosition());
 
-                ///Intent intent = new Intent(mContext, DetailsActivity.class);
-                //intent.putExtra(mContext.getResources().getString(R.string.parcel_movie), movie);
+                Intent intent = new Intent(mContext, RecipeActivity.class);
+                intent.putExtra(mContext.getResources().getString(R.string.parcel_recipe), recipe);
 
-                //mContext.startActivity(intent);
+                mContext.startActivity(intent);
             }
-        });*/
+        });
     }
 
     // Return the size of the dataset (invoked by the layout manager)

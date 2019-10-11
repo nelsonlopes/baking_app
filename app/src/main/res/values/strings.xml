@@ -5,6 +5,8 @@
     <string name="parcel_recipe">PARCEL_RECIPE</string>
 
     <!-- Error messages -->
+    <!-- Recipe activity with null intent -->
+    <string name="error_message">Recipe data not available.</string>
     <!-- Error getting results -->
     <string name="error_message_results">Failed to get results. Tap here to try again.</string>
     <!-- Error internet connections -->

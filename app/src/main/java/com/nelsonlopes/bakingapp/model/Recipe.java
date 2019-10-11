@@ -3,25 +3,24 @@ package com.nelsonlopes.bakingapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe implements Parcelable {
+    @SerializedName("id")
     private int id;
+    @SerializedName("name")
     private String name;
-    //private List<Ingredient> ingredients;
-    //private List<Step> steps;
+    @SerializedName("ingredients")
+    private List<Ingredient> ingredients = new ArrayList<>();
+    @SerializedName("steps")
+    private List<Step> steps = new ArrayList<>();
+    @SerializedName("servings")
     private int servings;
+    @SerializedName("image")
     private String image;
-
-    private Recipe(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        //ingredients = new ArrayList<Ingredient>();
-        //steps = new ArrayList<Step>();
-        servings = in.readInt();
-        image = in.readString();
-    }
 
     public int getId() {
         return id;
@@ -39,7 +38,7 @@ public class Recipe implements Parcelable {
         this.name = name;
     }
 
-    /*public List<Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
@@ -53,7 +52,7 @@ public class Recipe implements Parcelable {
 
     public void setSteps(List<Step> steps) {
         this.steps = steps;
-    }*/
+    }
 
     public int getServings() {
         return servings;
@@ -71,6 +70,16 @@ public class Recipe implements Parcelable {
         this.image = image;
     }
 
+    // Parcelable
+    private Recipe(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        in.readList(this.ingredients, (Ingredient.class.getClassLoader()));
+        in.readList(this.steps, (Step.class.getClassLoader()));
+        servings = in.readInt();
+        image = in.readString();
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -80,11 +89,8 @@ public class Recipe implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(id);
         parcel.writeString(name);
-        //parcel.writeTypedList(ingredients);
-
-
-
-        ///parcel.writeDouble(steps);
+        parcel.writeList(ingredients);
+        parcel.writeList(steps);
         parcel.writeInt(servings);
         parcel.writeString(image);
     }

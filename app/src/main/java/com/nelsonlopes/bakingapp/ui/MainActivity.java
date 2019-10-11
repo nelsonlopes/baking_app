@@ -1,25 +1,22 @@
 package com.nelsonlopes.bakingapp.ui;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.data.network.NetworkUtils;
 import com.nelsonlopes.bakingapp.data.network.RecipesRestClient;
 import com.nelsonlopes.bakingapp.model.Recipe;
+import com.nelsonlopes.bakingapp.ui.adapters.RecipesAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +50,8 @@ public class MainActivity extends AppCompatActivity {
         // Bind the view using Butter Knife
         ButterKnife.bind(this);
 
-        /**
-         * If something goes wrong (like there is no internet connection), the usar taps the
-         * TextView and a new call to the API is made.
-         */
+        // If something goes wrong (like there is no internet connection), the usar taps the
+        //TextView and a new call to the API is made.
         mErrorMessageDisplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
