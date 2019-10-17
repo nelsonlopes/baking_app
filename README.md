@@ -9,7 +9,7 @@ THis project is under development, but the objective is to show students' abilit
 - Widgets
 
 Besides that, the project implements:
-- Retofit
+- Retrofit
 - Gson
 - Butter Knife
 - Picasso
