@@ -1,6 +1,7 @@
 package com.nelsonlopes.bakingapp.ui;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.model.Step;
+import com.nelsonlopes.bakingapp.ui.adapters.StepsAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StepFragment extends Fragment {
 
@@ -26,9 +31,9 @@ public class StepFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Load the saved state if there is one
+        // Load the saved state (the list of images and list index) if there is one
         if(savedInstanceState != null) {
-            // Loads image/video and step description
+            mStep = savedInstanceState.getParcelable("step");
         }
 
         // Inflate the fragment layout
@@ -52,6 +57,7 @@ public class StepFragment extends Fragment {
      */
     @Override
     public void onSaveInstanceState(Bundle currentState) {
+         currentState.putParcelable("step", mStep);
     }
 
     // Setter method
