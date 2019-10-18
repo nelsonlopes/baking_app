@@ -46,4 +46,11 @@ dependencies {
 
     // Material components theme
     implementation 'com.google.android.material:material:1.0.0'
+
+    // ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:r2.2.0'
+
+    // MediaSessionCompat
+    implementation "com.android.support:support-compat:28.1.1"
+    implementation "com.android.support:support-media-compat:28.1.1" // TODO should use androidx
 }

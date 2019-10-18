@@ -17,6 +17,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
 
     private Context mContext;
     private List<Step> steps;
+    private OnItemClickListener mOnItemClickListener;
 
     // Provide a reference to the views for each data item
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -26,11 +27,25 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
             super(v);
             view = v;
         }
+
+        public void bind(final Step step, final OnItemClickListener onItemClickListener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.OnItemClick(step);
+                }
+            });
+        }
     }
 
-    public StepsAdapter(Context context, List<Step> mSteps) {
+    public interface OnItemClickListener {
+        void OnItemClick(Step step);
+    }
+
+    public StepsAdapter(Context context, List<Step> mSteps, OnItemClickListener onItemClickListener) {
         mContext = context;
         steps = mSteps;
+        mOnItemClickListener = onItemClickListener;
     }
 
     // Create new views (invoked by the layout manager)
@@ -54,17 +69,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
 
         stepTv.setText(steps.get(position).getShortDescription());
 
-        /*holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Recipe recipe = getItem(holder.getAdapterPosition());
-
-                ///Intent intent = new Intent(mContext, DetailsActivity.class);
-                //intent.putExtra(mContext.getResources().getString(R.string.parcel_movie), movie);
-
-                //mContext.startActivity(intent);
-            }
-        });*/
+        holder.bind(steps.get(position), mOnItemClickListener);
     }
 
     // Return the size of the dataset (invoked by the layout manager)

@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(mAdapter);
 
-        // Get Recipes - API call + JSON parse + RecyclerView populate
         if (savedInstanceState == null || !savedInstanceState.containsKey(getString(R.string.parcel_recipe))) {
             getRecipes();
         } else {
@@ -89,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Get Recipes - API call + JSON parse + RecyclerView populate
+     */
     private void getRecipes() {
-        /**
-         * If the sort method is favorites, the data is persisted locally. Else, calls the API
-         */
         if (NetworkUtils.isOnline(getApplicationContext())) {
             Call<List<Recipe>> call = RecipesRestClient.getInstance().getRecipes().getRecipes();
             Callback<List<Recipe>> callback = new Callback<List<Recipe>>() {

@@ -3,6 +3,8 @@
 
     <!-- Passing the Recipe in the Intent -->
     <string name="parcel_recipe">PARCEL_RECIPE</string>
+    <!-- Passing the Step in the Intent -->
+    <string name="parcel_step">PARCEL_STEP</string>
 
     <!-- Error messages -->
     <!-- Recipe activity with null intent -->
@@ -11,4 +13,10 @@
     <string name="error_message_results">Failed to get results. Tap here to try again.</string>
     <!-- Error internet connections -->
     <string name="error_message_network">Check your internet connection. Tap here to try again.</string>
+
+    <string name="guess">Can you guess the composer?</string>
+    <string name="notification_text">Press play to hear the piece!</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="restart">Restart</string>
 </resources>
