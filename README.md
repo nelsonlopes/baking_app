@@ -13,3 +13,4 @@ Besides that, the project implements:
 - Gson
 - Butter Knife
 - Picasso
+- Parcelable
