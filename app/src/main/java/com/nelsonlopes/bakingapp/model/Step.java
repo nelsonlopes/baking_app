@@ -12,9 +12,9 @@ public class Step implements Parcelable {
     private String shortDescription;
     @SerializedName("description")
     private String description;
-    @SerializedName("videoUrl")
+    @SerializedName("videoURL")
     private String videoUrl;
-    @SerializedName("thumbnailUrl")
+    @SerializedName("thumbnailURL")
     private String thumbnailUrl;
 
     public int getId() {

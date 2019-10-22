@@ -23,7 +23,7 @@ public class StepActivity extends AppCompatActivity {
         if(savedInstanceState == null) {
             // Retrieve step that was sent through an intent; use it to display the desired Step information
 
-            // Create a new head BodyPartFragment
+            // Create a new StepFragment
             StepFragment stepFragment = new StepFragment();
 
             // Set the list of image id's for the head fragment and set the position to the second image in the list

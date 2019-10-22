@@ -3,7 +3,10 @@ package com.nelsonlopes.bakingapp.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.model.Step;
@@ -25,6 +28,10 @@ public class RecipeActivity extends AppCompatActivity {
         if (findViewById(R.id.step_container) != null) {
             // This StepFragment will only initially exist in the two-pane tablet case
             mTwoPane = true;
+
+            // Getting rid of the "Next" button that appears on phones for launching a separate activity
+            //Button nextButton = findViewById(R.id.btnNext);
+           //nextButton.setVisibility(View.GONE);
 
             if(savedInstanceState == null) {
                 // In two-pane mode, add StepFragment to the screen

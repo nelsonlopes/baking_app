@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -91,11 +92,26 @@ public class MasterListFragment extends Fragment {
 
                     // Put this information in a Bundle and attach it to an Intent that will launch an StepActivity
 
-                    // Attach the Bundle to an intent
                     final Intent intent = new Intent(getContext(), StepActivity.class);
                     intent.putExtra(getActivity().getApplicationContext().getResources().getString(R.string.parcel_step), step);
 
                     getActivity().startActivity(intent);
+
+                    // Figures out what's the next Step
+//                    Step stepNext = recipe.getSteps().get(step.getId() + 1);
+
+                    // Intent of Next Step button
+//                    final Intent intentNext = new Intent(getContext(), StepActivity.class);
+//                    intent.putExtra(getActivity().getApplicationContext().getResources().getString(R.string.parcel_step), stepNext);
+
+                    // The "Next" button launches a new AndroidMeActivity
+/*                    Button nextButton = getActivity().findViewById(R.id.btnNext);
+                    nextButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(intentNext);
+                        }
+                    });*/
                 }
             }
         });
