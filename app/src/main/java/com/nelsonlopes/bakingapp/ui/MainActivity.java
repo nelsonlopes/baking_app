@@ -27,6 +27,9 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String BUNDLE = "bundle";
+    public static final String INGREDIENTS = "ingredients";
+
     @BindView(R.id.rv_recipes)
     RecyclerView recyclerView;
     // Create a variable to store a reference to the error message TextView

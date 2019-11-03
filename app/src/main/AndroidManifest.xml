@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.StepActivity"></activity>
+        <activity android:name=".ui.StepActivity" />
+
         <activity android:name=".ui.RecipeActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
@@ -18,9 +19,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
-    <uses-permission android:name="android.permission.INTERNET" />
+        <receiver android:name=".ui.widget.BakingAppProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/baking_app_widget_info" />
+        </receiver>
+        <service
+            android:name=".ui.widget.ListViewService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <service android:name=".ui.widget.WidgetUpdateService"/>
+    </application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

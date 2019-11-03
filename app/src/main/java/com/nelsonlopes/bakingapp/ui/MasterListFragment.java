@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +18,7 @@ import com.nelsonlopes.bakingapp.model.Recipe;
 import com.nelsonlopes.bakingapp.model.Step;
 import com.nelsonlopes.bakingapp.ui.adapters.IngredientsAdapter;
 import com.nelsonlopes.bakingapp.ui.adapters.StepsAdapter;
+import com.nelsonlopes.bakingapp.ui.widget.WidgetUpdateService;
 
 // This fragment displays all of the recipe steps in one large list
 // The list appears as a LinearLayout RecyclerView
@@ -117,6 +117,10 @@ public class MasterListFragment extends Fragment {
         });
         stepsRv.setAdapter(mAdapterSteps);
 
+        // Start Widget's Service, which is going to update the widget's list with the
+        // ingredients data
+        startWidgetService();
+
         // Return the root view
         return rootView;
     }
@@ -124,5 +128,17 @@ public class MasterListFragment extends Fragment {
     private void closeOnError() {
         getActivity().finish();
         Toast.makeText(getContext(), R.string.error_message, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * This will trigger WidgetUpdateService to update the Widget
+     * to the last recipe that the user has seen
+     */
+    void startWidgetService()
+    {
+        Intent intent = new Intent(getContext(), WidgetUpdateService.class);
+        intent.putExtra(getContext().getResources().getString(R.string.parcel_recipe), recipe);
+        intent.setAction(WidgetUpdateService.WIDGET_UPDATE_ACTION);
+        getContext().startService(intent);
     }
 }

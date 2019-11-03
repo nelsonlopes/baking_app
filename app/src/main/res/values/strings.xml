@@ -5,6 +5,8 @@
     <string name="parcel_recipe">PARCEL_RECIPE</string>
     <!-- Passing the Step in the Intent -->
     <string name="parcel_step">PARCEL_STEP</string>
+    <!-- Passing the Ingredients in the Intent -->
+    <string name="parcel_ingredient">PARCEL_INGREDIENT</string>
 
     <!-- Error messages -->
     <!-- Recipe activity with null intent -->
@@ -21,9 +23,14 @@
     <!-- Next Step Button text that appears in single-pane -->
     <string name="next_step">Next Step</string>
 
-    <string name="guess">Can you guess the composer?</string>
-    <string name="notification_text">Press play to hear the piece!</string>
     <string name="play">Play</string>
     <string name="pause">Pause</string>
     <string name="restart">Restart</string>
+    <string name="recipe_step_intructions_title">Recipe Step Instructions</string>
+    <string name="notification_text">Press play to see the video with the step instructions!</string>
+
+    <!-- Widget -->
+    <string name="add_widget">Add widget</string>
+    <string name="empty_view_text">No recipes!</string>
+    <string name="appwidget_text">EXAMPLE</string>
 </resources>

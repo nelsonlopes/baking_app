@@ -276,7 +276,7 @@ public class StepFragment extends Fragment implements ExoPlayer.EventListener {
         PendingIntent contentPendingIntent = PendingIntent.getActivity
                 (getContext(), 0, new Intent(getContext(), StepFragment.class), 0);
 
-        builder.setContentTitle(getString(R.string.guess))
+        builder.setContentTitle(getString(R.string.recipe_step_intructions_title))
                 .setContentText(getString(R.string.notification_text))
                 .setContentIntent(contentPendingIntent)
                 .setSmallIcon(R.drawable.exo_controls_play)
