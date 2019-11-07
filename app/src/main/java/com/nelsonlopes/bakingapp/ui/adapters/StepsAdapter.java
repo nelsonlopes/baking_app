@@ -16,7 +16,7 @@ import java.util.List;
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Step> steps;
+    private List<Step> mSteps;
     private OnItemClickListener mOnItemClickListener;
 
     // Provide a reference to the views for each data item
@@ -28,23 +28,24 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
             view = v;
         }
 
-        public void bind(final Step step, final OnItemClickListener onItemClickListener) {
+        public void bind(final Step step, final List<Step> steps, final int position,
+                         final OnItemClickListener onItemClickListener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.OnItemClick(step);
+                    onItemClickListener.OnItemClick(step, steps, position);
                 }
             });
         }
     }
 
     public interface OnItemClickListener {
-        void OnItemClick(Step step);
+        void OnItemClick(Step step, List<Step> steps, int position);
     }
 
-    public StepsAdapter(Context context, List<Step> mSteps, OnItemClickListener onItemClickListener) {
+    public StepsAdapter(Context context, List<Step> steps, OnItemClickListener onItemClickListener) {
         mContext = context;
-        steps = mSteps;
+        mSteps = steps;
         mOnItemClickListener = onItemClickListener;
     }
 
@@ -67,31 +68,31 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
         // - replace the contents of the view with that
         TextView stepTv = holder.view.findViewById(R.id.tv_step);
 
-        stepTv.setText(steps.get(position).getShortDescription());
+        stepTv.setText(mSteps.get(position).getShortDescription());
 
-        holder.bind(steps.get(position), mOnItemClickListener);
+        holder.bind(mSteps.get(position), mSteps, position, mOnItemClickListener);
     }
 
     // Return the size of the dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        if (steps != null) {
-            return steps.size();
+        if (mSteps != null) {
+            return mSteps.size();
         } else {
             return 0;
         }
     }
 
     public Step getItem(int position) {
-        if (steps == null || steps.size() == 0) {
+        if (mSteps == null || mSteps.size() == 0) {
             return null;
         }
 
-        return steps.get(position);
+        return mSteps.get(position);
     }
 
     public void setSteps(List<Step> steps) {
-        this.steps = steps;
+        this.mSteps = steps;
         notifyDataSetChanged();
     }
 }

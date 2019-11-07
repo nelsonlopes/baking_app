@@ -3,25 +3,20 @@ package com.nelsonlopes.bakingapp.ui;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.media.session.MediaButtonReceiver;
 
-import com.bumptech.glide.Glide;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -43,6 +38,8 @@ import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.model.Step;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
+import static com.nelsonlopes.bakingapp.ui.RecipeActivity.mSteps;
+import static com.nelsonlopes.bakingapp.ui.RecipeActivity.mPosition;
 
 public class StepFragment extends Fragment implements ExoPlayer.EventListener {
 
@@ -78,16 +75,35 @@ public class StepFragment extends Fragment implements ExoPlayer.EventListener {
         mPlayerView = rootView.findViewById(R.id.playerView);
         // Get a reference to the objects in the fragment layout
         final TextView textView = rootView.findViewById(R.id.tv_step_description);
-        //Button btnNext = rootView.findViewById(R.id.btnNext);
+        Button btnNext = rootView.findViewById(R.id.btnNext);
+        // If it is the last step, get ride of the next step button
+        if (mPosition == mSteps.size() - 1) {
+            btnNext.setVisibility(View.GONE);
+        } else {
+            // Else, setOnClickLister to the next Step
+            btnNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mPosition != mSteps.size() - 1) {
+                        mPosition++;
+                        StepFragment newFragment = new StepFragment();
+
+                        // Give the step resource to the new fragment
+                        newFragment.setStep(mSteps.get(mPosition));
+
+                        // Replace the old fragment with a new one
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.step_container, newFragment)
+                                .commit();
+                    }
+                }
+            });
+        }
 
         if (mStep == null) {
-            textView.setText("Select a step in the list");
+            textView.setText(R.string.no_step_selected);
         } else {
             if (mStep.getVideoUrl() != null && !mStep.getVideoUrl().equals("")) {
-                // Load the question mark as the background image until the user answers the question.
-                //mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource
-                  //      (getResources(), R.drawable.question_mark));
-
                 // Initialize the Media Session.
                 initializeMediaSession();
 
@@ -283,9 +299,6 @@ public class StepFragment extends Fragment implements ExoPlayer.EventListener {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .addAction(restartAction)
                 .addAction(playPauseAction);
-                //.setStyle(new NotificationCompat.MediaStyle()
-                  //      .setMediaSession(mMediaSession.getSessionToken())
-                    //    .setShowActionsInCompactView(0,1));
 
         mNotificationManager = (NotificationManager) getActivity().getSystemService(NOTIFICATION_SERVICE);
         mNotificationManager.notify(0, builder.build());

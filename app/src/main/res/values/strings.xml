@@ -5,8 +5,8 @@
     <string name="parcel_recipe">PARCEL_RECIPE</string>
     <!-- Passing the Step in the Intent -->
     <string name="parcel_step">PARCEL_STEP</string>
-    <!-- Passing the Ingredients in the Intent -->
-    <string name="parcel_ingredient">PARCEL_INGREDIENT</string>
+    <string name="parcel_steps">PARCEL_STEPS</string>
+    <string name="parcel_step_position">PARCEL_STEP_POSITION</string>
 
     <!-- Error messages -->
     <!-- Recipe activity with null intent -->
@@ -20,9 +20,13 @@
     <string name="ingredients_title">Ingredients</string>
     <string name="steps_title">Steps</string>
 
+    <!-- Text that is shown when there are no steps selected -->
+    <string name="no_step_selected">Select a step in the list</string>
+
     <!-- Next Step Button text that appears in single-pane -->
     <string name="next_step">Next Step</string>
 
+    <!-- ExoPlayer -->
     <string name="play">Play</string>
     <string name="pause">Pause</string>
     <string name="restart">Restart</string>

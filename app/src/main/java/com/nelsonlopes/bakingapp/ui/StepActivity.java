@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.model.Step;
-import com.nelsonlopes.bakingapp.ui.adapters.StepsAdapter;
 
 // This activity will display step details (video, image, description)
 public class StepActivity extends AppCompatActivity {
