@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.model.Step;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // This activity is responsible for displaying the master list of all images
@@ -19,7 +20,7 @@ public class RecipeActivity extends AppCompatActivity {
     // Track whether to display a two-pane or single-pane UI
     // A single-pane display refers to phone screens, and two-pane to larger tablet screens
     public static boolean mTwoPane;
-    public static List<Step> mSteps;
+    public static List<Step> mSteps = new ArrayList<>();
     public static int mPosition;
 
     @Override
@@ -32,17 +33,13 @@ public class RecipeActivity extends AppCompatActivity {
             // This StepFragment will only initially exist in the two-pane tablet case
             mTwoPane = true;
 
-            // Getting rid of the "Next" button that appears on phones for launching a separate activity
-            Button btnNext = findViewById(R.id.btnNext);
-            btnNext.setVisibility(View.GONE);
-
-            if(savedInstanceState == null) {
+            if (savedInstanceState == null) {
                 // In two-pane mode, add StepFragment to the screen
                 FragmentManager fragmentManager = getSupportFragmentManager();
 
                 // Creating a new fragment
                 StepFragment stepFragment = new StepFragment();
-                stepFragment.setStep(step);
+                stepFragment.setStep(mSteps.get(0));
                 fragmentManager.beginTransaction()
                         .add(R.id.step_container, stepFragment)
                         .commit();

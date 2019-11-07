@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.nelsonlopes.bakingapp.R;
 import com.nelsonlopes.bakingapp.model.Step;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // This activity will display step details (video, image, description)
 public class StepActivity extends AppCompatActivity {
 
@@ -24,9 +27,6 @@ public class StepActivity extends AppCompatActivity {
 
             // Create a new StepFragment
             StepFragment stepFragment = new StepFragment();
-
-            // Set the list of image id's for the head fragment and set the position to the second image in the list
-            //stepFragment.setStep(<first-step>);
 
             // Get Step from Intent
             Intent intent = getIntent();

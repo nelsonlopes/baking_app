@@ -40,6 +40,7 @@ import com.nelsonlopes.bakingapp.model.Step;
 import static android.content.Context.NOTIFICATION_SERVICE;
 import static com.nelsonlopes.bakingapp.ui.RecipeActivity.mSteps;
 import static com.nelsonlopes.bakingapp.ui.RecipeActivity.mPosition;
+import static com.nelsonlopes.bakingapp.ui.RecipeActivity.mTwoPane;
 
 public class StepFragment extends Fragment implements ExoPlayer.EventListener {
 
@@ -76,28 +77,33 @@ public class StepFragment extends Fragment implements ExoPlayer.EventListener {
         // Get a reference to the objects in the fragment layout
         final TextView textView = rootView.findViewById(R.id.tv_step_description);
         Button btnNext = rootView.findViewById(R.id.btnNext);
-        // If it is the last step, get ride of the next step button
-        if (mPosition == mSteps.size() - 1) {
+        if (mTwoPane) {
+            // Getting rid of the next step button that appears on phones for launching a separate activity
             btnNext.setVisibility(View.GONE);
         } else {
-            // Else, setOnClickLister to the next Step
-            btnNext.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mPosition != mSteps.size() - 1) {
-                        mPosition++;
-                        StepFragment newFragment = new StepFragment();
+            // If it is the last step, get ride of the next step button
+            if (mPosition == mSteps.size() - 1) {
+                btnNext.setVisibility(View.GONE);
+            } else {
+                // Else, setOnClickLister to the next Step
+                btnNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mPosition != mSteps.size() - 1) {
+                            mPosition++;
+                            StepFragment newFragment = new StepFragment();
 
-                        // Give the step resource to the new fragment
-                        newFragment.setStep(mSteps.get(mPosition));
+                            // Give the step resource to the new fragment
+                            newFragment.setStep(mSteps.get(mPosition));
 
-                        // Replace the old fragment with a new one
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.step_container, newFragment)
-                                .commit();
+                            // Replace the old fragment with a new one
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.step_container, newFragment)
+                                    .commit();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
 
         if (mStep == null) {
